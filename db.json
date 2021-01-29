@@ -1,30 +1,25 @@
+
 {
-  "bg": "https://articles.gamerheadquarters.com/images/top10/movies/10.jpg",
-  "title": "Título do Quiz",
-  "description": "Descrição do seu quiz aqui",
+  "bg": "imgs/eng.png",
+  "title": "Quiz de Pronúncias e Significados em Inglês",
+  "description": "Um quiz rápido para testar seus conhecimentos em inglês",
   "questions": [
     {
-      "image": "https://placehold.it/400x400",
-      "title": "Questão numero 02",
-      "description": "Descrição da questão numero #02",
-      "answer": 2,
+      "title": "DO or MAKE? Qual alternativa está correta?",
+      "description": "Te confundi um pouquinho aí, ne?!",
+      "answer": 0,
       "alternatives": [
-        "Alternativa A",
-        "Alternativa B",
-        "Alternativa C",
-        "Alternativa D"
+        "I do homework",
+        "I make homework"
       ] 
     },
     {
-      "image": "https://placehold.it/400x400",
-      "title": "Questão numero 02",
-      "description": "Descrição da questão numero #02",
-      "answer": 2,
+      "title": "SAD e SAID tem a mesma pronúncia?",
+      "description": "Vish, agora ferrou!",
+      "answer": 1,
       "alternatives": [
-        "Alternativa A",
-        "Alternativa B",
-        "Alternativa C",
-        "Alternativa D"
+        "Sim",
+        "Não"
       ]
     }
 ],
@@ -33,12 +28,12 @@
   ],
   "theme": {
     "colors": {
-      "primary": "#4CAF50",
-      "secondary": "#FF9800",
+      "primary": "#49a1d1",
+      "secondary": "#f54f73",
       "mainBg": "#1C1814",
       "contrastText": "#FFFFFF",
-      "wrong": "#FF5722",
-      "success": "#4CAF50"
+      "wrong": "#f04b52",
+      "success": "#a4c945"
     },
     "borderRadius": "4px"
   }

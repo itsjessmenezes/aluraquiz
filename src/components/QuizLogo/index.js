@@ -34,10 +34,10 @@ Logo.propTypes = {
 };
 
 const QuizLogo = styled(Logo)`
-  margin: auto;
+  margin-top: 150px;
   display: block;
-  @media screen and (max-width: 500px) {
-    margin: 0;
+  @media screen and (max-width: 700px) {
+    margin-top: 150px;
   }
 `;
 

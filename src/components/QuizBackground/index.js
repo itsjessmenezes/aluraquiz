@@ -1,22 +1,23 @@
-// src/components/QuizBackground/index.js
 import styled from 'styled-components';
+
 
 const QuizBackground = styled.div`
   width: 100%;
   background-size: cover;
-  background-position: center;
+  background-position: right;
   background-image: url(${({ backgroundImage }) => backgroundImage});
   background-color: ${({ theme }) => theme.colors.mainBg};
   flex: 1;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 1034px) {
     background-image: none;
     &:after {
       content: "";
+      background-size: right; 
+      background-position: center;
       background-size: cover;
-    background-position: center;
       background-image:
         linear-gradient(transparent, ${({ theme }) => theme.colors.mainBg}),
-        url(${({ backgroundImage }) => backgroundImage});
+        url("https://blogsaverroes.juntadeandalucia.es/cristeacher/files/2020/06/cropped-hardest-part-learning-english.jpg");
       display: block;
       width: 100%;
       height: 210px;
