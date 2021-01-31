@@ -12,10 +12,9 @@ import Lottie from 'react-lottie';
 import animationData from '../../../data.json';
 import { useRouter } from 'next/router';
 
-function ResultWidget({ results }) {
+function ResultWidget({ results, isExternal }) {
   const router = useRouter();
   const { name } = router.query;
-  console.log(name);
 
   return (
     <>
@@ -24,8 +23,9 @@ function ResultWidget({ results }) {
 
       <Widget.Content>
         <h2>
-          {db.external ? '' :
-          `Thank you ${name}! `}</h2>
+          {isExternal ? '' :
+          `Thank you ${name}!`}
+        </h2>
         <p>
           Você acertou
           {' '}
@@ -56,45 +56,43 @@ function ResultWidget({ results }) {
     </Widget>
 
     <Footer>
-      {db.external
-      ?
-      <>
-        <a href="https://www.alura.com.br/">
-          <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
-        </a>
-          <p>
-            Orgulhosamente criado durante
-            {' '}
-            a
-            {' '}
+      {isExternal
+        ? <>
             <a href="https://www.alura.com.br/">
-              <span>Imersão React da Alura</span>
+              <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
             </a>
-          </p>
-      </>
-      :
-      <>
-      <a href="https://www.instagram.com/inglescomshane/"></a>
-          <p>
-            Perguntas inspiradas no conteúdo do professor
-            {' '}
-            
-            {' '}
-            <a href="https://www.instagram.com/inglescomshane/">
-              <span>Shane.</span>
-            </a>
-            {' '}
-            Um americano que vive no Brasil e compartilha conteúdos incríveis!
-            {' '}
-            <a href="https://www.instagram.com/inglescomshane/">
-              <span>Aproveita para conferir!</span>
-            </a>
-          </p>
-      </> 
+              <p>
+                Orgulhosamente criado durante
+                {' '}
+                a
+                {' '}
+                <a href="https://www.alura.com.br/">
+                  <span>Imersão React da Alura</span>
+                </a>
+              </p>
+          </>
+        : <>
+            <a href="https://www.instagram.com/inglescomshane/"></a>
+            <p>
+              Perguntas inspiradas no conteúdo do professor
+              {' '}
+              
+              {' '}
+              <a href="https://www.instagram.com/inglescomshane/">
+                <span>Shane.</span>
+              </a>
+              {' '}
+              Um americano que vive no Brasil e compartilha conteúdos incríveis!
+              {' '}
+              <a href="https://www.instagram.com/inglescomshane/">
+                <span>Aproveita para conferir!</span>
+              </a>
+            </p> 
+        </> 
     }
     </Footer>
     <Footer style={{ backgroundColor: 'transparent', fontSize: '10px'}}>
-      {db.external ? '' : <a href="https://www.freepik.com/free-vector/learn-language-illustration-study-foreign-languages-concept_2703421.htm">Freepik background</a>}
+      {db.external ? "" : <a href="https://www.freepik.com/free-vector/learn-language-illustration-study-foreign-languages-concept_2703421.htm">Freepik background</a>}
     </Footer>
     </>
   );
@@ -180,6 +178,7 @@ function QuestionWidget({
               key={alternativeId}
               data-selected={isSelected}
               data-status={isQuestionSubmitted && alternativeStatus}
+              data-disabled={isQuestionSubmitted}
               htmlFor={alternativeId}
               >
                 <input
@@ -196,7 +195,7 @@ function QuestionWidget({
           {/* <pre>
             {JSON.stringify(question, null, 4)}
           </pre> */}
-          <Button type="submit" disabled={!hasAlternativeSelected}>
+          <Button type="submit" disabled={!hasAlternativeSelected || isQuestionSubmitted}>
             Confirmar
           </Button>
           {isQuestionSubmitted && isCorrect && <p>Você acertou!</p>}
@@ -213,7 +212,7 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage({ externalQuestions, externalBg  }) {
+export default function QuizPage({ externalQuestions, externalBg, external=false  }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
@@ -260,7 +259,7 @@ export default function QuizPage({ externalQuestions, externalBg  }) {
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
-        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
+        {screenState === screenStates.RESULT && <ResultWidget results={results} isExternal={external} />}
       </QuizContainer>
     </QuizBackground>
   );

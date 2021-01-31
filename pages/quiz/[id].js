@@ -9,6 +9,7 @@ export default function QuizDaGaleraPage({ dbExterno }) {
       <QuizScreen
         externalQuestions={dbExterno.questions}
         externalBg={dbExterno.bg}
+        external
       />
     </ThemeProvider>
     // {/* <pre style={{ color: 'black' }}>
