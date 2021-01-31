@@ -7,9 +7,20 @@ const AlternativesForm = styled.form`
       
       &[data-status="SUCCESS"] {
         background-color: ${({ theme }) => theme.colors.success};
+        transform: scale(1.1);
+
       }
       &[data-status="ERROR"] {
         background-color: ${({ theme }) => theme.colors.wrong};
+        animation: shake 500ms infinite linear
+      }
+      @keyframes shake {
+        0% {
+          transform: translate(5px);
+        }
+        10% {
+          transform: translate(-5px);
+        }
       }
     }
     &:focus {

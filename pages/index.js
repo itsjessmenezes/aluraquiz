@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -12,6 +13,7 @@ import QuizContainer from '../src/components/QuizContainer';
 import QuizLogo from '../src/components/QuizLogo';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
+import Link from '../src/components/Link';
 
 // const BackgroundImage = styled.div`
 // background-image: url(${db.bg});
@@ -27,20 +29,30 @@ export default function Home() {
   return(
     <QuizBackground backgroundImage={db.bg}>
       <Head>
-        <title>AluraQuiz</title>
+        <title>AluraQuiz - {db.title}</title>
+        <link rel="shortcut icon" href="imgs/favicon.png" />
       </Head>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0, duration: 0.5}}
+          variants={{
+            show: {opacity: 1, y: '0'},
+            hidden: {opacity: 0, y: '100%'}
+          }}
+          initial="hidden"
+          animate="show"
+        >
         <Widget.Header>
           <h1>English Time!</h1>
           </Widget.Header>
         <Widget.Content>
-          <p>Te desafio a acertar os questionarios de inglês sobre pronuncias e significados de algumas palavras</p>
+          <p>Te desafio a acertar o questionario de inglês sobre pronuncias e significados</p>
 
           <form onSubmit={function (e) {
             e.preventDefault();
-            router.push(`./quiz?name${name}`)
+            router.push(`./quiz?name=${name}`)
           }}>
             <Input
             onChange={(e) => {
@@ -55,14 +67,60 @@ export default function Home() {
         </Widget.Content>
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5}}
+          variants={{
+            show: {opacity: 1},
+            hidden: {opacity: 0}
+          }}
+          initial="hidden"
+          animate="show"
+        >
           <Widget.Content>
           <h1>Quizes da galera</h1>
             
-          <p>Lorem ipsum dolor sit amet...</p>
+          <ul>
+            {db.external.map((linkExterno) => {
+              const [projectName, githubUser] = linkExterno
+              .replace('https://', '')
+              .replace('.vercel.app/', '')
+              .split('.');
+              
+              return (
+              <li key={linkExterno}>
+                <Widget.Topic
+                as={Link}
+                href={`/quiz/${projectName}___${githubUser}`}>
+                  {`${githubUser}/${projectName}`}
+                </Widget.Topic>
+              </li>
+              );
+            })}
+          </ul>
           </Widget.Content>
         </Widget>
-        <Footer />
+        <Footer
+          as={motion.section}
+          transition={{ delay: 0.5, duration: 0.5}}
+          variants={{
+            show: {opacity: 1},
+            hidden: {opacity: 0}
+          }}
+          initial="hidden"
+          animate="show"
+        >
+          <a href="https://www.alura.com.br/">
+          <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
+          </a>
+          <p>
+            Orgulhosamente criado durante a
+            {' '}
+            <a href="https://www.alura.com.br/">
+              <span>Imersão React da Alura</span>
+            </a>
+          </p>
+        </Footer>
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/itsjessmenezes" />
       </QuizBackground>

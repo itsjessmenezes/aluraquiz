@@ -1,18 +1,31 @@
-import React from 'react';
-import db from '../db.json';
-import Widget from '../src/components/Widget';
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import AlternativesForm from '../src/components/AlternativesForm';
-import QuizLogo from '../src/components/QuizLogo';
-import Button from '../src/components/Button';
+import React, {useState} from 'react';
+import db from '../../../db.json';
+import Widget from '../../components/Widget';
+import QuizBackground from '../../components/QuizBackground';
+import QuizContainer from '../../components/QuizContainer';
+import AlternativesForm from '../../components/AlternativesForm';
+import QuizLogo from '../../components/QuizLogo';
+import Button from '../../components/Button';
+import Footer from '../../components/Footer';
+import BackLinkArrow from '../../components/BackLinkArrow';
+import Lottie from 'react-lottie';
+import animationData from '../../../data.json';
+import { useRouter } from 'next/router';
 
 function ResultWidget({ results }) {
+  const router = useRouter();
+  const { name } = router.query;
+  console.log(name);
+
   return (
+    <>
     <Widget>
       <Widget.Header>Tela de Resultado:</Widget.Header>
 
       <Widget.Content>
+        <h2>
+          {db.external ? '' :
+          `Thank you ${name}! `}</h2>
         <p>
           Você acertou
           {' '}
@@ -29,7 +42,7 @@ function ResultWidget({ results }) {
         <ul>
           {results.map((result, index) => (
             <li key={`result__${result}`}>
-              #0
+              #
               {index + 1}
               {' '}
               Resultado: {
@@ -41,15 +54,83 @@ function ResultWidget({ results }) {
         </ul>
       </Widget.Content>
     </Widget>
+
+    <Footer>
+      {db.external
+      ?
+      <>
+        <a href="https://www.alura.com.br/">
+          <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
+        </a>
+          <p>
+            Orgulhosamente criado durante
+            {' '}
+            a
+            {' '}
+            <a href="https://www.alura.com.br/">
+              <span>Imersão React da Alura</span>
+            </a>
+          </p>
+      </>
+      :
+      <>
+      <a href="https://www.instagram.com/inglescomshane/"></a>
+          <p>
+            Perguntas inspiradas no conteúdo do professor
+            {' '}
+            
+            {' '}
+            <a href="https://www.instagram.com/inglescomshane/">
+              <span>Shane.</span>
+            </a>
+            {' '}
+            Um americano que vive no Brasil e compartilha conteúdos incríveis!
+            {' '}
+            <a href="https://www.instagram.com/inglescomshane/">
+              <span>Aproveita para conferir!</span>
+            </a>
+          </p>
+      </> 
+    }
+    </Footer>
+    <Footer style={{ backgroundColor: 'transparent', fontSize: '10px'}}>
+      {db.external ? '' : <a href="https://www.freepik.com/free-vector/learn-language-illustration-study-foreign-languages-concept_2703421.htm">Freepik background</a>}
+    </Footer>
+    </>
   );
 }
 
 function LoadingWidget() {
+  const[animationState, setAnimationState] = useState({
+    isStopped: false,
+    isPaused: false,
+  });
+  const defaultOptions = {
+    loog: true,
+    autoplay: true,
+    animationData: animationData,
+    renderedSettings: {
+      preserveAspectRation: 'xMidYMid slice'
+    } 
+  };
+
   return (
     <Widget>
       <Widget.Header>Carregando...</Widget.Header>
 
-      <Widget.Content>[Desafio do Loading]</Widget.Content>
+      <Widget.Content>
+        {/* [Desafio do Loading] */}
+        <div>
+          <Lottie
+            options={defaultOptions}
+            height={200}
+            width={200}
+            isStopped={animationState.isStopped}
+            isPaused={animationState.isPaused}
+          />
+        </div>
+
+        </Widget.Content>
     </Widget>
   );
 }
@@ -70,17 +151,9 @@ function QuestionWidget({
   return (
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
       </Widget.Header>
-      {/* <img
-        alt="Descrição"
-        style={{
-          width: '100%',
-          height: '150px',
-          objectFit: 'cover',
-        }}
-        src="https://placehold.it/400x400"
-        /> */}
       <Widget.Content>
         <h2>{question.title}</h2>
         <p>{question.description}</p>
@@ -94,7 +167,7 @@ function QuestionWidget({
               onSubmit();
               setQuestionSubmitted(false);
               setSelectedAlternative(undefined);
-            }, 3 * 1000);
+            }, 1 * 1000);
           }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
@@ -140,13 +213,14 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
-export default function QuizPage() {
+export default function QuizPage({ externalQuestions, externalBg  }) {
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
-  const question = db.questions[questionIndex];
-  const totalQuestions = db.questions.length;
+  const question = externalQuestions[questionIndex];
   const [results, setResults] = React.useState([]);
+  const totalQuestions = externalQuestions.length;
+  const bg = externalBg;
 
   function addResult(result) {
     setResults([
@@ -158,7 +232,7 @@ export default function QuizPage() {
   React.useEffect(() => {
     setTimeout(() => {
       setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+    }, 3 * 1000);
     //didMount
   }, []);
 
@@ -172,7 +246,7 @@ export default function QuizPage() {
   }
 
   return (
-    <QuizBackground backgroundImage={db.bg}>
+    <QuizBackground backgroundImage={bg}>
       <QuizContainer>
         <QuizLogo />
         {screenState === screenStates.QUIZ && (

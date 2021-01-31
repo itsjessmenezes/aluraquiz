@@ -3,6 +3,7 @@
   "bg": "imgs/eng.png",
   "title": "Quiz de Pronúncias e Significados em Inglês",
   "description": "Um quiz rápido para testar seus conhecimentos em inglês",
+  "favicon": "imgs/favicon.png",
   "questions": [
     {
       "title": "DO or MAKE? Qual alternativa está correta?",
@@ -15,7 +16,169 @@
     },
     {
       "title": "SAD e SAID tem a mesma pronúncia?",
-      "description": "Vish, agora ferrou!",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "WEEK e WEAK tem a mesma pronúncia?",
+      "description": "Easy!",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "PUXAR e EMPURRAR respectivamente é:",
+      "description": "Essa é facil ein!",
+      "answer": 1,
+      "alternatives": [
+        "Push, pull",
+        "Pull, push"
+      ]
+    },
+    {
+      "title": "'Belo, refinado' se escreve como?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Odd",
+        "Exquisite"
+      ]
+    },
+    {
+      "title": "TO, TOO e TWO tem a mesma pronúncia?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "SITE e SIGHT tem a mesma pronúncia?",
+      "description": "Eita, tava ruim, mas parece que ficou pior",
+      "answer": 0,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "'Eu vou para o shopping', Qual alternativa está correta?",
+      "description": "Moleza!",
+      "answer": 0,
+      "alternatives": [
+        "I'm going to the mall",
+        "I'm going to the shopping"
+      ]
+    },
+    {
+      "title": "'Tem uma foto sobre a mesa', qual a tradução de SOBRE neste contexto?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Over",
+        "About"
+      ]
+    },
+    {
+      "title": "DAD e DEAD tem a mesma pronúncia?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "Existe plural para as palavras INFORMATION e MUSIC?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "IT, EACH e EAT, tem a mesma pronúncia?",
+      "description": "Agora sim uma facil!",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "WHATSAPP e WHAT'S UP, tem a mesma pronúncia?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "O significado de 'cotidiano' ou 'do dia a dia' é:",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "EVERYDAY",
+        "EVERY DAY"
+      ]
+    },
+    {
+      "title": "ALWAYS e FOREVER tem o mesmo significado?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "O plural de CHILD é:",
+      "description": "Agora vai!",
+      "answer": 0,
+      "alternatives": [
+        "Children",
+        "Childrens"
+      ]
+    },
+    {
+      "title": "COUGH e COFFEE tem a mesma pronuncia?",
+      "description": "Será?",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },
+    {
+      "title": "CHEAP e SHEEP tem a mesma pronuncia?",
+      "description": "",
+      "answer": 1,
+      "alternatives": [
+        "Sim",
+        "Não"
+      ]
+    },{
+      "title": "Qual a opção correta para a palavra 'DESCOBRIR'?",
+      "description": "Next, please!",
+      "answer": 0,
+      "alternatives": [
+        "To find out",
+        "To figure out"
+      ]
+    },
+    
+    {
+      "title": "MAN e MEN tem a mesma pronuncia?",
+      "description": "Última, finalmente!",
       "answer": 1,
       "alternatives": [
         "Sim",
@@ -24,13 +187,14 @@
     }
 ],
   "external": [
-    ""
+    "https://brunoquiz.brunosaibert.vercel.app/",
+    "https://one-piece-quiz.cassiofb-dev.vercel.app/"
   ],
   "theme": {
     "colors": {
       "primary": "#49a1d1",
       "secondary": "#f54f73",
-      "mainBg": "#1C1814",
+      "mainBg": "#2E324E",
       "contrastText": "#FFFFFF",
       "wrong": "#f04b52",
       "success": "#a4c945"

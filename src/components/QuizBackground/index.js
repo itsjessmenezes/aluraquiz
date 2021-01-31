@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import db from '../../../db.json';
 
 const QuizBackground = styled.div`
   width: 100%;
@@ -8,7 +8,7 @@ const QuizBackground = styled.div`
   background-image: url(${({ backgroundImage }) => backgroundImage});
   background-color: ${({ theme }) => theme.colors.mainBg};
   flex: 1;
-  @media screen and (max-width: 1034px) {
+  @media screen and (max-width: 950px) {
     background-image: none;
     &:after {
       content: "";
@@ -17,7 +17,7 @@ const QuizBackground = styled.div`
       background-size: cover;
       background-image:
         linear-gradient(transparent, ${({ theme }) => theme.colors.mainBg}),
-        url("https://blogsaverroes.juntadeandalucia.es/cristeacher/files/2020/06/cropped-hardest-part-learning-english.jpg");
+        url(${({ backgroundImage }) => db.external ? backgroundImage : "https://blogsaverroes.juntadeandalucia.es/cristeacher/files/2020/06/cropped-hardest-part-learning-english.jpg"});
       display: block;
       width: 100%;
       height: 210px;
